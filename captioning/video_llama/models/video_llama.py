@@ -154,6 +154,7 @@ class VideoLLAMA(Blip2Base):
         for layer in self.Qformer.bert.encoder.layer:
             layer.output = None
             layer.intermediate = None
+        print('load_from_pretrained')
         self.load_from_pretrained(url_or_filename=q_former_model)
 
         if freeze_qformer:
@@ -178,7 +179,7 @@ class VideoLLAMA(Blip2Base):
         self.IMAGE_PATCH_TOKEN_ID = self.llama_tokenizer.get_vocab()[DEFAULT_IMAGE_PATCH_TOKEN]
         self.AUDIO_PATCH_TOKEN_ID = self.llama_tokenizer.get_vocab()[DEFAULT_AUDIO_PATCH_TOKEN]
 
-        print('Loading LLAMA Model')
+        print(f'Loading LLAMA Model{llama_model}')
         if self.low_resource:
             self.llama_model = LlamaForCausalLM.from_pretrained(
                 llama_model,
