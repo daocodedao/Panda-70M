@@ -196,8 +196,9 @@ if __name__ == "__main__":
         cap = cv2.VideoCapture(video_path)
         fps = cap.get(cv2.CAP_PROP_FPS)
         cutscene = video_cutscenes[video_path.split("/")[-1]]
-        
+        print("video_path")
         print(video_path)
+        print("cutscene")
         print(cutscene)
         cutscene_raw_feature, cutscene_raw_status = extract_cutscene_feature(video_path, cutscene)
         print(cutscene_raw_feature)
