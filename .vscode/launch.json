@@ -42,7 +42,8 @@
             "program": "${workspaceFolder}/captioning/inference.py",
             "console": "integratedTerminal",
             "justMyCode": false,
-            "args": ["--video-list", "inputs/video_list.txt","prompt-list ", "inputs/prompt_list.txt"],
+            // --video-list inputs/video_list.txt --prompt-list inputs/prompt_list.txt
+            "args": ["--video-list", "inputs/video_list.txt","--prompt-list", "inputs/prompt_list.txt"],
             "cwd": "${workspaceFolder}/captioning"
         },
     ]
