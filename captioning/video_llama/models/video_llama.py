@@ -18,12 +18,10 @@ from video_llama.models.Qformer import BertConfig, BertLMHeadModel
 from video_llama.models.ImageBind.models.imagebind_model import ImageBindModel, ModalityType
 from video_llama.models.ImageBind.models import imagebind_model
 # from flamingo_pytorch import PerceiverResampler
+import sys
 
-logging.basicConfig(filename="./logs/dl.log",
-                    filemode='a',
-                    format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
-                    datefmt='%H:%M:%S',
-                    level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
+
 
 class StoppingCriteriaSub(StoppingCriteria):
     def __init__(self, stops=[], encounters=1):
