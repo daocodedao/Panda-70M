@@ -10,9 +10,9 @@ from pytz import timezone
 from tqdm import tqdm
 import numpy as np
 
-# sys.path.append('ImageBind')
-from ImageBind.models import imagebind_model
-from ImageBind.models.imagebind_model import ModalityType
+sys.path.append('ImageBind')
+from models import imagebind_model
+from models.imagebind_model import ModalityType
 
 
 def read_videoframe(video_path, frame_idx):
