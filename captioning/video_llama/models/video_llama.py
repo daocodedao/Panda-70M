@@ -179,7 +179,7 @@ class VideoLLAMA(Blip2Base):
         self.IMAGE_PATCH_TOKEN_ID = self.llama_tokenizer.get_vocab()[DEFAULT_IMAGE_PATCH_TOKEN]
         self.AUDIO_PATCH_TOKEN_ID = self.llama_tokenizer.get_vocab()[DEFAULT_AUDIO_PATCH_TOKEN]
 
-        print(f'Loading LLAMA Model{llama_model}')
+        print(f'Loading LLAMA Model:{llama_model} low_resource={low_resource}')
         if self.low_resource:
             self.llama_model = LlamaForCausalLM.from_pretrained(
                 llama_model,
