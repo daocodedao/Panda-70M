@@ -122,7 +122,7 @@ class VideoLLAMA(Blip2Base):
         self.low_resource = low_resource
         self.input_prompt = input_prompt
 
-        logging.info('Loading VIT')
+        print('Loading VIT')
         self.visual_encoder, self.ln_vision = self.init_vision_encoder(
             vit_model, img_size, drop_path_rate, use_grad_checkpoint, vit_precision
         )
@@ -135,10 +135,10 @@ class VideoLLAMA(Blip2Base):
                 param.requires_grad = False
             self.ln_vision = self.ln_vision.eval()
             self.ln_vision.train = disabled_train
-            logging.info("freeze vision encoder")
-        logging.info('Loading VIT Done')
+            print("freeze vision encoder")
+        print('Loading VIT Done')
 
-        logging.info('Loading Q-Former')
+        print('Loading Q-Former')
         self.Qformer, self.query_tokens = self.init_Qformer(
             num_query_token, self.visual_encoder.num_features
         )
@@ -156,10 +156,10 @@ class VideoLLAMA(Blip2Base):
             self.Qformer = self.Qformer.eval()
             self.Qformer.train = disabled_train
             self.query_tokens.requires_grad = False
-            logging.info("freeze Qformer")
-        logging.info('Loading Q-Former Done')
+            print("freeze Qformer")
+        print('Loading Q-Former Done')
 
-        logging.info(f'Loading LLAMA Tokenizer {llama_model}')
+        print(f'Loading LLAMA Tokenizer {llama_model}')
         self.llama_model = None
         self.llama_tokenizer = LlamaTokenizer.from_pretrained(llama_model, use_fast=False)
         print(f"type(self.llama_model=)={type(self.llama_tokenizer)}")
@@ -172,7 +172,7 @@ class VideoLLAMA(Blip2Base):
         self.IMAGE_PATCH_TOKEN_ID = self.llama_tokenizer.get_vocab()[DEFAULT_IMAGE_PATCH_TOKEN]
         self.AUDIO_PATCH_TOKEN_ID = self.llama_tokenizer.get_vocab()[DEFAULT_AUDIO_PATCH_TOKEN]
 
-        logging.info('Loading LLAMA Model')
+        print('Loading LLAMA Model')
         if self.low_resource:
             self.llama_model = LlamaForCausalLM.from_pretrained(
                 llama_model,
@@ -188,10 +188,10 @@ class VideoLLAMA(Blip2Base):
 
         for name, param in self.llama_model.named_parameters():
             param.requires_grad = False
-        logging.info('Loading LLAMA Done')
+        print('Loading LLAMA Done')
 
 
-        logging.info('Loading LLAMA proj')
+        print('Loading LLAMA proj')
         self.llama_proj = nn.Linear(
             self.Qformer.config.hidden_size, self.llama_model.config.hidden_size
         )
@@ -199,27 +199,27 @@ class VideoLLAMA(Blip2Base):
             print("load llama proj weight: {}".format(llama_proj_model))
             llama_proj_weight = torch.load(llama_proj_model, map_location="cpu")
             msg = self.load_state_dict(llama_proj_weight['model'], strict=False)
-            logging.info('Loaded LLAMA proj from pretrained checkpoint')
+            print('Loaded LLAMA proj from pretrained checkpoint')
         else:
-            logging.info('Did NOT load LLAMA proj from pretrained checkpoint')
+            print('Did NOT load LLAMA proj from pretrained checkpoint')
 
         if frozen_llama_proj:
             for name, param in self.llama_proj.named_parameters():
                 param.requires_grad = False
-            logging.info('LLAMA proj is frozen')
+            print('LLAMA proj is frozen')
         else:
             for name, param in self.llama_proj.named_parameters():
                 param.requires_grad = True
-            logging.info('LLAMA proj is not frozen')
+            print('LLAMA proj is not frozen')
 
-        logging.info('Loading LLAMA proj Done')
+        print('Loading LLAMA proj Done')
 
         self.max_caption_len = max_caption_len
         self.max_prompt_len = max_prompt_len
         self.start_sym = start_sym
         self.end_sym = end_sym
 
-        logging.info('Initializing Video Qformer')
+        print('Initializing Video Qformer')
         self.video_frame_position_embedding = nn.Embedding(max_frame_pos, self.Qformer.config.hidden_size)
         self.num_video_query_token = num_video_query_token
         self.video_Qformer, self.video_query_tokens = self.init_video_Qformer(num_query_token = num_video_query_token,\
@@ -238,18 +238,18 @@ class VideoLLAMA(Blip2Base):
             for name, param in self.video_frame_position_embedding.named_parameters():
                 param.requires_grad = False
             self.video_query_tokens.requires_grad = False
-            logging.info('Video Qformer is frozen')
+            print('Video Qformer is frozen')
         else:
             for name, param in self.video_Qformer.named_parameters():
                 param.requires_grad = True
             for name, param in self.video_frame_position_embedding.named_parameters():
                 param.requires_grad = True
             self.video_query_tokens.requires_grad = True
-            logging.info('Video Qformer is not frozen')
-        logging.info('Initializing Video Qformer Done')
+            print('Video Qformer is not frozen')
+        print('Initializing Video Qformer Done')
 
         if self.input_prompt:
-            logging.info('Initializing Text Qformer')
+            print('Initializing Text Qformer')
             self.text_prompt_position_embedding = nn.Embedding(max_prompt_len, self.llama_model.config.hidden_size)
             self.num_text_query_token = num_text_query_token
             self.input_vid2tex_query_embed = input_vid2tex_query_embed
@@ -284,7 +284,7 @@ class VideoLLAMA(Blip2Base):
                     param.requires_grad = False
                 if not self.input_vid2tex_query_embed:
                     self.text_query_tokens.requires_grad = False
-                logging.info('Text Qformer is frozen')
+                print('Text Qformer is frozen')
             else:
                 for name, param in self.text_Qformer.named_parameters():
                     param.requires_grad = True
@@ -292,10 +292,10 @@ class VideoLLAMA(Blip2Base):
                     param.requires_grad = True
                 if not self.input_vid2tex_query_embed:
                     self.text_query_tokens.requires_grad = True
-                logging.info('Text Qformer is not frozen')
-            logging.info('Initializing Text Qformer Done')
+                print('Text Qformer is not frozen')
+            print('Initializing Text Qformer Done')
         else:
-            logging.info('NOT initializing Text Qformer')
+            print('NOT initializing Text Qformer')
             
     def vit_to_cpu(self):
         self.ln_vision.to("cpu")
