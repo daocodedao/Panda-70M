@@ -8,7 +8,7 @@ model:
   num_query_token: 32
 
   # Vicuna
-  llama_model: "lmsys/vicuna-7b-delta-v0"
+  llama_model: "lmsys/vicuna-7b-v1.5"
   
   # Branch  
   fusion_head_layers: 2
