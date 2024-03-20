@@ -55,7 +55,10 @@ def extract_cutscene_feature(video_path, cutscenes):
 
         frames = torch.stack(frames, dim=0)
         with torch.no_grad():
-            batch_features = model({ModalityType.VISION: frames.to(device)})[ModalityType.VISION]
+            modelResult = model({ModalityType.VISION: frames.to(device)})
+            print(f"modelresult={modelResult}")
+            batch_features = modelResult[ModalityType.VISION]
+            print(f"batch_features={batch_features}")
         features = torch.vstack((features, batch_features.detach().cpu()))
 
     return features, res
@@ -168,6 +171,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     device = "cuda"
+    print("loading model")
     model = imagebind_model.imagebind_huge(pretrained=True)
     model.eval()
     model.to(device)
