@@ -35,8 +35,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
     cfg = Config(args)
 
+    print(f"args:{args}")
     model_config = cfg.model_cfg
+    print(f"model_config:{model_config}")
     model_cls = registry.get_model_class(model_config.arch)
+    print(f"model_cls:{model_cls}")
     model = model_cls.from_config(model_config).to("cuda")
     model.eval()
 
