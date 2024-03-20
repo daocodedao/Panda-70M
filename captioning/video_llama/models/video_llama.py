@@ -157,6 +157,8 @@ class VideoLLAMA(Blip2Base):
 
         logging.info('Loading LLAMA Tokenizer')
         self.llama_tokenizer = LlamaTokenizer.from_pretrained(llama_model, use_fast=False)
+        print(f"type(self.llama_model=)={type(self.llama_model)}")
+
         DEFAULT_IMAGE_PATCH_TOKEN = '<ImageHere>'
         DEFAULT_AUDIO_PATCH_TOKEN = '<AudioHere>'
         self.llama_tokenizer.add_tokens([DEFAULT_IMAGE_PATCH_TOKEN], special_tokens=True)
