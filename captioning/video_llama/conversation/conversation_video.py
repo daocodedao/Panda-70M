@@ -162,7 +162,7 @@ class Chat:
         begin_idx = max(0, current_max_len - max_length)
 
         embs = embs[:, begin_idx:]
-        
+        print("llama_model.generate")
         outputs = self.model.llama_model.generate(
             inputs_embeds=embs,
             max_new_tokens=max_new_tokens,
@@ -292,6 +292,7 @@ class Chat:
             # only add bos to the first seg
             for i, seg in enumerate(prompt_segs)
         ]
+        print("llama_model.model.embed_tokens")
         seg_embs = [self.model.llama_model.model.embed_tokens(seg_t) for seg_t in seg_tokens]
         mixed_embs = [emb for pair in zip(seg_embs[:-1], img_list) for emb in pair] + [seg_embs[-1]]
         mixed_embs = torch.cat(mixed_embs, dim=1)
