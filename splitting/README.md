@@ -4,12 +4,12 @@ The section includes the code to split a long video into multiple semantics-cons
 ## Video Splitting and Quick Demo
 ### Setup Repository and Enviroment
 ```
-git clone https://github.com/snap-research/Panda-70M.git
+git clone https://github.com/daocodedao/Panda-70M.git
 cd Panda-70M/splitting
 
 # create a conda environment
-conda create --name panda70m_splitting python=3.8.16 -y
-conda activate panda70m_splitting
+python3.10 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 
 # install ffmpeg

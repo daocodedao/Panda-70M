@@ -3,7 +3,7 @@ torch==1.12.1
 torchvision==0.13.1
 torchaudio==0.12.1
 tqdm
-decord
+
 timm
 einops
 opencv_python
@@ -17,3 +17,5 @@ transformers==4.28.0
 pytorchvideo
 pycocoevalcap
 bert-score
+decord; sys_platform != 'darwin'
+eva-decord;sys_platform == 'darwin' and platform_machine == 'arm64'

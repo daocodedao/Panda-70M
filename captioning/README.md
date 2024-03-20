@@ -15,8 +15,8 @@ git clone https://github.com/snap-research/Panda-70M.git
 cd Panda-70M/captioning
 
 # create a conda environment
-conda create --name panda70m_captioning python=3.9 -y
-conda activate panda70m_captioning
+python3.10 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 
 # install default JRE

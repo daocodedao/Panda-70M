@@ -18,3 +18,4 @@ pytz
 scenedetect
 tqdm
 opencv-python
+mayavi @ https://github.com/enthought/mayavi/zipball/master

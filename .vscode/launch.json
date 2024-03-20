@@ -1,0 +1,49 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Split1: cutscene_detect",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/splitting/cutscene_detect.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": ["--video-list", "video_list.txt","--output-json-file", "cutscene_frame_idx.json"],
+            "cwd": "${workspaceFolder}/splitting"
+
+        },
+        {
+            "name": "Split2: event_stitching",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/splitting/event_stitching.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": ["--video-list", "video_list.txt","--cutscene-frameidx", "cutscene_frame_idx.json","--output-json-file", "event_timecode.json"],
+            "cwd": "${workspaceFolder}/splitting"
+        },
+        {
+            "name": "Split3: video_splitting",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/splitting/video_splitting.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": ["--video-list", "video_list.txt","--event-timecode", "event_timecode.json","--output-folder", "outputs"],
+            "cwd": "${workspaceFolder}/splitting"
+        },
+        {
+            "name": "inference",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/captioning/inference.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": ["--video-list", "inputs/video_list.txt","prompt-list ", "inputs/prompt_list.txt"],
+            "cwd": "${workspaceFolder}/captioning"
+        },
+    ]
+}
