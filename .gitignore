@@ -18,3 +18,4 @@ outputs
 *.pth
 cutscene_frame_idx.json
 event_timecode.json
+logs/
