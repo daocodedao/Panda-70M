@@ -1,22 +1,6 @@
 # 🐼 Panda-70M
 This is the offical Github repository of Panda-70M.
 
-**[Panda-70M: Captioning 70M Videos with Multiple Cross-Modality Teachers](https://snap-research.github.io/Panda-70M)**
-</br>
-[Tsai-Shien Chen](https://tsaishien-chen.github.io/),
-[Aliaksandr Siarohin](https://aliaksandrsiarohin.github.io/aliaksandr-siarohin-website/),
-[Willi Menapace](https://www.willimenapace.com/),
-[Ekaterina Deyneka](https://edeyneka.github.io/),
-[Hsiang-wei Chao](https://www.linkedin.com/in/hsiang-wei-chao),
-[Byung Eun Jeon](https://www.linkedin.com/in/logan-jeon),
-[Yuwei Fang](https://yuwfan.github.io/),
-[Hsin-Ying Lee](http://hsinyinglee.com/),
-[Jian Ren](https://alanspike.github.io/),
-[Ming-Hsuan Yang](https://faculty.ucmerced.edu/mhyang/),
-[Sergey Tulyakov](http://www.stulyakov.com/)
-</br>
-*Computer Vision and Pattern Recognition 2024*
-
 <!-- [Arxiv Report](https://arxiv.org/abs/2307.04725) | [Project Page](https://snap-research.github.io/Panda-70M) -->
 [![arXiv](https://img.shields.io/badge/arXiv-2402.19479-b31b1b.svg)](https://arxiv.org/abs/2402.19479)
 [![Project Page](https://img.shields.io/badge/Project-Website-green)](https://snap-research.github.io/Panda-70M)
@@ -34,17 +18,6 @@ This repository have three sections:
 <a target="_blank"><img src="assets/collection_pipeline.gif" style="width: 100%; min-width: 200px; display: block; margin: auto;"></a>
 </p>
 
-### Download
-  | Split           | Download | # Source Videos | # Samples | Video Duration | Storage Space|
-  |-----------------|----------|-----------------|-----------|----------------|--------------|
-  | Training (full) | [link](https://drive.google.com/file/d/1DeODUcdJCEfnTjJywM-ObmrlVg-wsvwz/view?usp=sharing) (2.01 GB) | 3,779,763 | 70,723,513 | 167 khrs  | ~36 TB  |
-  | Training (10M)  | [link](https://drive.google.com/file/d/1Lrsb65HTJ2hS7Iuy6iPCmjoc3abbEcAX/view?usp=sharing) (381 MB)  | 3,755,240 | 10,473,922 | 37.0 khrs | ~8.0 TB |
-  | Training (2M)   | [link](https://drive.google.com/file/d/1jWTNGjb-hkKiPHXIbEA5CnFwjhA-Fq_Q/view?usp=sharing) (86.5 MB) | 800,000   | 2,400,000  | 7.56 khrs | ~1.6 TB |
-  | Validation      | [link](https://drive.google.com/file/d/1cTCaC7oJ9ZMPSax6I4ZHvUT-lqxOktrX/view?usp=sharing) (803 KB)  | 2,000     | 6,000      | 18.5 hrs  | ~4.0 GB |
-  | Testing         | [link](https://drive.google.com/file/d/1ee227tHEO-DT8AkX7y2q6-bfAtUL-yMI/view?usp=sharing) (803 KB)  | 2,000     | 6,000      | 18.5 hrs  | ~4.0 GB |
-
-More details can be found in [Dataset Dataloading](./dataset_dataloading) section.
-  
 ## Demonstration
 ### Video-Caption Pairs in Panda-70M
   <table class="center">
@@ -95,24 +68,3 @@ https://github.com/snap-research/Panda-70M/assets/3857997/8144cf3d-c20c-4c18-a4b
 
 https://github.com/snap-research/Panda-70M/assets/3857997/b262128e-2152-41e8-873e-db2dc275c40f
 
-## License of Panda-70M
-
-See [license](https://github.com/snap-research/Panda-70M/blob/main/LICENSE).
-The video samples are collected from a publicly available dataset.
-Users must follow [the related license](https://raw.githubusercontent.com/microsoft/XPretrain/main/hd-vila-100m/LICENSE) to use these video samples.
-
-## Citation
-
-If you find this project useful for your research, please cite our paper. :blush:
-
-```bibtex
-@article{chen2024panda70m,
-    title   = {Panda-70M: Captioning 70M Videos with Multiple Cross-Modality Teachers},
-    author  = {Chen, Tsai-Shien and Siarohin, Aliaksandr and Menapace, Willi and Deyneka, Ekaterina and Chao, Hsiang-wei and Jeon, Byung Eun and Fang, Yuwei and Lee, Hsin-Ying and Ren, Jian and Yang, Ming-Hsuan and Tulyakov, Sergey},
-    journal = {arXiv preprint arXiv:2402.19479},
-    year    = {2024}
-}
-```
-
-## Contact Information
-**Tsai-Shien Chen**: [tsaishienchen@gmail.com](mailto:tsaishienchen@gmail.com) 
