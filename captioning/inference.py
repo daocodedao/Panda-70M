@@ -9,6 +9,8 @@ from video_llama.processors.video_processor import load_video
 from transformers import StoppingCriteria, StoppingCriteriaList
 from tqdm import tqdm
 
+os.environ['HTTP_PROXY'] = '192.168.0.77:18808'
+os.environ['HTTPS_PROXY'] = '192.168.0.77:18808'
 
 class DotDict(dict):
     """dot.notation access to dictionary attributes"""
