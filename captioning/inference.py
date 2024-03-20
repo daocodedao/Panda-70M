@@ -42,6 +42,7 @@ if __name__ == "__main__":
     print(f"model_cls:{model_cls}")
     model = model_cls.from_config(model_config).to("cuda")
     model.eval()
+    print(f"model_cls:from_config done")
 
     vis_processor_cfg = DotDict({"name":"alpro_video_eval", "n_frms":8, "image_size":224})
     vis_processor = registry.get_processor_class(vis_processor_cfg.name).from_config(vis_processor_cfg)
