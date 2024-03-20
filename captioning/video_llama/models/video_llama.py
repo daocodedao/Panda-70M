@@ -155,7 +155,8 @@ class VideoLLAMA(Blip2Base):
             logging.info("freeze Qformer")
         logging.info('Loading Q-Former Done')
 
-        logging.info('Loading LLAMA Tokenizer')
+        logging.info(f'Loading LLAMA Tokenizer {llama_model}')
+        self.llama_model = None
         self.llama_tokenizer = LlamaTokenizer.from_pretrained(llama_model, use_fast=False)
         print(f"type(self.llama_model=)={type(self.llama_tokenizer)}")
 
