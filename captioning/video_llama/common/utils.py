@@ -30,6 +30,7 @@ from torchvision.datasets.utils import (
     download_file_from_google_drive,
     extract_archive,
 )
+import platform
 
 
 def now():
@@ -422,3 +423,9 @@ def get_file_size(filename):
     """
     size_in_mb = os.path.getsize(filename) / float(1024**2)
     return size_in_mb
+
+def getProxy():
+    if platform.system() == "Linux":
+        return "192.168.0.77:18808"
+    else:
+       return "127.0.0.1:10809"

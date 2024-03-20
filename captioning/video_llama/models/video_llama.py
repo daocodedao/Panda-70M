@@ -19,9 +19,15 @@ from video_llama.models.ImageBind.models.imagebind_model import ImageBindModel, 
 from video_llama.models.ImageBind.models import imagebind_model
 # from flamingo_pytorch import PerceiverResampler
 import sys
+import os
+from video_llama.common.utils import getProxy
+
 
 logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
 
+
+os.environ['HTTP_PROXY'] = getProxy()
+os.environ['HTTPS_PROXY'] = getProxy()
 
 class StoppingCriteriaSub(StoppingCriteria):
     def __init__(self, stops=[], encounters=1):
@@ -117,7 +123,7 @@ class VideoLLAMA(Blip2Base):
         imagebind_ckpt_path=""
     ):
         super().__init__()
-
+        print("init token")
         self.tokenizer = self.init_tokenizer()
         self.low_resource = low_resource
         self.input_prompt = input_prompt
