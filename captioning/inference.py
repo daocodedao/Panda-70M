@@ -39,6 +39,7 @@ if __name__ == "__main__":
 
     print(f"args:{args}")
     model_config = cfg.model_cfg
+
     print(f"model_config:{model_config}")
     model_cls = registry.get_model_class(model_config.arch)
     print(f"model_cls:{model_cls}")
@@ -46,10 +47,11 @@ if __name__ == "__main__":
     model.eval()
     print(f"model_cls:from_config done")
 
-    vis_processor_cfg = DotDict({"name":"alpro_video_eval", "n_frms":8, "image_size":224})
-    vis_processor = registry.get_processor_class(vis_processor_cfg.name).from_config(vis_processor_cfg)
     text_processor_cfg = DotDict({"name":"blip_caption", "max_words":100})
     text_processor = registry.get_processor_class(text_processor_cfg.name).from_config(text_processor_cfg)
+
+    vis_processor_cfg = DotDict({"name":"alpro_video_eval", "n_frms":8, "image_size":224})
+    vis_processor = registry.get_processor_class(vis_processor_cfg.name).from_config(vis_processor_cfg)
 
     batch_size = 16
     
