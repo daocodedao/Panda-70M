@@ -186,7 +186,6 @@ class VideoLLAMA(Blip2Base):
                 torch_dtype=torch.bfloat16, # torch.float16,
                 load_in_8bit=True,
                 device_map={'': device_8bit},
-                device_map="auto"
             )
         else:
             self.llama_model = LlamaForCausalLM.from_pretrained(
