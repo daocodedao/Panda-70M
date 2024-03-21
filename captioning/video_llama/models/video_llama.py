@@ -190,9 +190,9 @@ class VideoLLAMA(Blip2Base):
 
             self.llama_model = LlamaForCausalLM.from_pretrained(
                 llama_model,
-                torch_dtype=torch.bfloat16, # torch.float16,
-                load_in_8bit=True,
-                device_map={'': device_8bit},
+                # torch_dtype=torch.bfloat16, # torch.float16,
+                torch_dtype="auto",
+                device_map="auto"
             )
         else:
             self.llama_model = LlamaForCausalLM.from_pretrained(
