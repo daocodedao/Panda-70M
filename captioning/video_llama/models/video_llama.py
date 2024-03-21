@@ -667,7 +667,7 @@ class VideoLLAMA(Blip2Base):
         ckpt_path = cfg.get("ckpt", "")  # load weights of MiniGPT-4
         if ckpt_path:
             print("Load first Checkpoint: {}".format(ckpt_path))
-            ckpt = torch.load(ckpt_path, map_location="cpu")
+            ckpt = torch.load(ckpt_path)
             print("model.load_state_dict")
             msg = model.load_state_dict(ckpt['model'], strict=False)
         ckpt_path_2 = cfg.get("ckpt_2", "")  
