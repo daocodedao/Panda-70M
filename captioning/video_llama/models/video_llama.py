@@ -191,7 +191,7 @@ class VideoLLAMA(Blip2Base):
             self.llama_model = LlamaForCausalLM.from_pretrained(
                 llama_model,
                 # torch_dtype=torch.bfloat16, # torch.float16,
-                torch_dtype="auto",
+                torch_dtype=torch.float16,
                 device_map="auto"
             )
         else:
@@ -667,7 +667,7 @@ class VideoLLAMA(Blip2Base):
         ckpt_path = cfg.get("ckpt", "")  # load weights of MiniGPT-4
         if ckpt_path:
             print("Load first Checkpoint: {}".format(ckpt_path))
-            ckpt = torch.load(ckpt_path)
+            ckpt = torch.load(ckpt_path, map_location="cpu")
             print("model.load_state_dict")
             msg = model.load_state_dict(ckpt['model'], strict=False)
         ckpt_path_2 = cfg.get("ckpt_2", "")  
