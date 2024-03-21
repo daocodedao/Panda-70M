@@ -10,7 +10,7 @@ chat_state = default_conversation.copy()
 video_path = "/data/work/Panda-70M/splitting/outputs/video1.0.mp4"
 chat_state.system = ""
 img_list = []
-chat = Chat(model_path="./models/llama-7b-chat", device='cuda:0')
+chat = Chat(model_path="lmsys/vicuna-7b-v1.5", device='cuda:0')
 llm_message = chat.upload_video(video_path=video_path, conv=chat_state, img_list=img_list)
 
 while True:
