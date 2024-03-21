@@ -8,8 +8,15 @@ model:
   num_query_token: 32
 
   # Vicuna
-  llama_model: "openlm-research/open_llama_3b_v2"
+  llama_model: "lmsys/vicuna-7b-v1.5"
   
+  # llama_model: "lmsys/vicuna-7b-v1.5"
+  # llama_model: "Qwen/Qwen1.5-4B-Chat"
+  # llama_model: "unsloth/mistral-7b-bnb-4bit"
+  # llama_model: "openlm-research/open_llama_3b_v2"
+  # llama_model: "openlm-research/open_llama_7b_v2"
+
+
   # Branch  
   fusion_head_layers: 2
   max_frame_pos: 32
@@ -18,7 +25,7 @@ model:
   num_text_query_token: 32
   input_vid2tex_query_embed: True
   detach_video_query_embed: True
-  low_resource: True
+  low_resource: False
 
   max_caption_len: 48
   max_prompt_len: 200
