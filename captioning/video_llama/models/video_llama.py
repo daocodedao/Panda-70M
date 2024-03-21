@@ -674,4 +674,6 @@ class VideoLLAMA(Blip2Base):
             print("Load second Checkpoint: {}".format(ckpt_path_2))
             ckpt = torch.load(ckpt_path_2, map_location="cpu")
             msg = model.load_state_dict(ckpt['model'], strict=False)
+        
+        print("finish load Checkpoint")
         return model
