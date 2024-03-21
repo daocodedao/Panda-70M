@@ -16,6 +16,8 @@ img_list = []
 parser = argparse.ArgumentParser(description="Inference")
 parser.add_argument("--cfg-path", default="eval_configs/panda70M_eval.yaml", help="path to configuration file.")
 parser.add_argument("--output-json", default=None, help="output json file. Leave none to print out the results.")
+parser.add_argument("--gpu-id", type=int, default=0, help="specify the gpu to load the model.")
+
 parser.add_argument("--prompt-list", default=None, help="list of correponding input prompts. Leave none if no prompt input.")
 parser.add_argument(
     "--options",
