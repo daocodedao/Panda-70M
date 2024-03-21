@@ -44,6 +44,7 @@ if __name__ == "__main__":
     model_cls = registry.get_model_class(model_config.arch)
     print(f"model_cls:{model_cls}")
     model = model_cls.from_config(model_config).to("cuda")
+    print(f"model.eval()")
     model.eval()
     print(f"model_cls:from_config done")
 
