@@ -9,7 +9,7 @@ chat_state = default_conversation.copy()
 
 video_path = "/data/work/Panda-70M/splitting/outputs/video1.0.mp4"
 chat_state.system = ""
-img_list = []
+img_list = None
 llm_message = chat.upload_video(video_path , chat_state, img_list)
 
 while True:
