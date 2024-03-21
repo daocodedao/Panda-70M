@@ -39,7 +39,7 @@ vis_processor_cfg = cfg.datasets_cfg.webvid.vis_processor.train
 vis_processor = registry.get_processor_class(vis_processor_cfg.name).from_config(vis_processor_cfg)
 chat = Chat(model, vis_processor, device='cuda:{}'.format(args.gpu_id))
 
-chat = Chat("lmsys/vicuna-7b-v1.5", device='cuda:0')
+# chat = Chat("lmsys/vicuna-7b-v1.5", device='cuda:0')
 llm_message = chat.upload_video(video_path=video_path, conv=chat_state, img_list=img_list)
 
 while True:
