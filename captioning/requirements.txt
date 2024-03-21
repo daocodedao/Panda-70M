@@ -1,5 +1,10 @@
 --extra-index-url https://download.pytorch.org/whl/cu118
 
+transformers==4.28.0
+torch==1.12.1
+torchvision==0.13.1
+torchaudio==0.12.1
+
 tqdm
 timm
 einops
@@ -10,17 +15,16 @@ iopath
 webdataset
 ftfy
 SentencePiece
-transformers
+
 
 pycocoevalcap
 bert-score
 decord; sys_platform != 'darwin'
 eva-decord;sys_platform == 'darwin' and platform_machine == 'arm64'
 
-torch
-torchvision==0.17.0
-torchaudio==2.2.0
 pytorchvideo
+
+
 # pytorch==2.2.0
 
 # conda install pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cuda=11.8 -c pytorch -c nvidia
