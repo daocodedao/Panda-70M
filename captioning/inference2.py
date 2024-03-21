@@ -34,6 +34,7 @@ model_config = cfg.model_cfg
 model_config.device_8bit = args.gpu_id
 model_cls = registry.get_model_class(model_config.arch)
 model = model_cls.from_config(model_config).to('cuda:{}'.format(args.gpu_id))
+print(f"model.eval()")
 model.eval()
 vis_processor_cfg = cfg.datasets_cfg.webvid.vis_processor.train
 vis_processor = registry.get_processor_class(vis_processor_cfg.name).from_config(vis_processor_cfg)
