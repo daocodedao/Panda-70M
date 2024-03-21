@@ -10,7 +10,7 @@ iopath
 webdataset
 ftfy
 SentencePiece
-transformers==4.28.0
+transformers
 pytorchvideo
 pycocoevalcap
 bert-score
