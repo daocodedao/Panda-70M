@@ -1,6 +1,8 @@
 from video_llama.conversation.conversation_video import Chat
 from video_llama.conversation.conversation_video import default_conversation
-
+from video_llama.common.registry import registry
+from video_llama.common.config import Config
+import argparse
 
 # if args.model_type == 'vicuna':
 chat_state = default_conversation.copy()
@@ -10,7 +12,33 @@ chat_state = default_conversation.copy()
 video_path = "/data/work/Panda-70M/splitting/outputs/video1.0.mp4"
 chat_state.system = ""
 img_list = []
-chat = Chat(model_path="lmsys/vicuna-7b-v1.5", device='cuda:0')
+
+parser = argparse.ArgumentParser(description="Inference")
+parser.add_argument("--cfg-path", default="eval_configs/panda70M_eval.yaml", help="path to configuration file.")
+parser.add_argument("--video-list", required=True, help="list of input videos.")
+parser.add_argument("--output-json", default=None, help="output json file. Leave none to print out the results.")
+parser.add_argument("--prompt-list", default=None, help="list of correponding input prompts. Leave none if no prompt input.")
+parser.add_argument(
+    "--options",
+    nargs="+",
+    help="override some settings in the used config, the key-value pair "
+    "in xxx=yyy format will be merged into config file (deprecate), "
+    "change to --cfg-options instead.",
+)
+args = parser.parse_args()
+cfg = Config(args)
+
+
+model_config = cfg.model_cfg
+model_config.device_8bit = args.gpu_id
+model_cls = registry.get_model_class(model_config.arch)
+model = model_cls.from_config(model_config).to('cuda:{}'.format(args.gpu_id))
+model.eval()
+vis_processor_cfg = cfg.datasets_cfg.webvid.vis_processor.train
+vis_processor = registry.get_processor_class(vis_processor_cfg.name).from_config(vis_processor_cfg)
+chat = Chat(model, vis_processor, device='cuda:{}'.format(args.gpu_id))
+
+chat = Chat("lmsys/vicuna-7b-v1.5", device='cuda:0')
 llm_message = chat.upload_video(video_path=video_path, conv=chat_state, img_list=img_list)
 
 while True:
